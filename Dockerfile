@@ -9,6 +9,8 @@ RUN (cd /tmp/go/src && ./make.bash)
 ENV PATH="/tmp/go/bin:${PATH}"
 
 ADD . /go-ethereum
+
+
 RUN cd /go-ethereum && make geth
 
 # Pull Geth into a second stage deploy alpine container
@@ -16,8 +18,8 @@ FROM alpine:latest
 
 RUN apk add --no-cache ca-certificates curl
 COPY --from=builder /go-ethereum/build/bin/geth /usr/local/bin/
-ADD . genesis.json
-RUN geth init ./genesis.json
 
-EXPOSE 8545 8546 8547 30303 30303/udp
+
+
+EXPOSE 8545 8546 8547 30303 30311 30311/udp 30303/udp
 ENTRYPOINT ["geth"]
