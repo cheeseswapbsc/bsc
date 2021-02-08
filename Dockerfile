@@ -21,5 +21,5 @@ COPY --from=builder /go-ethereum/build/bin/geth /usr/local/bin/
 
 
 
-EXPOSE 8545 8546 8547 30303 30311 30311/udp 30303/udp
+EXPOSE 8575 30311 30311/udp
 ENTRYPOINT ["geth"]
